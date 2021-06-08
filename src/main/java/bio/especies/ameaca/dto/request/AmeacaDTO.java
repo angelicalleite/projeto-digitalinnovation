@@ -32,6 +32,5 @@ public class AmeacaDTO {
     private String data;
 
     @Valid
-    @NotEmpty
     private List<CategoriaDTO> categorias;
 }
