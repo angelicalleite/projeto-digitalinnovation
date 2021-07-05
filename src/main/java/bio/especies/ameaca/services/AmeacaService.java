@@ -21,18 +21,25 @@ public class AmeacaService {
 
     private final AmeacaMapper ameacaMapper;
 
-    public MessageResponseDTO create(AmeacaDTO ameacaDTO) {
+    public AmeacaDTO create(AmeacaDTO ameacaDTO) {
         Ameaca ameaca = ameacaMapper.toModel(ameacaDTO);
         Ameaca savedAmeaca = ameacaRepository.save(ameaca);
 
         MessageResponseDTO messageResponse = createMessageResponse("Ameaca successfully created with ID ", savedAmeaca.getId());
 
-        return messageResponse;
+        return ameacaMapper.toDTO(savedAmeaca);
     }
 
     public AmeacaDTO findById(Long id) throws AmeacaNotFoundException {
         Ameaca ameaca = ameacaRepository.findById(id)
                 .orElseThrow(() -> new AmeacaNotFoundException(id));
+
+        return ameacaMapper.toDTO(ameaca);
+    }
+
+    public AmeacaDTO findByEspecie(String especie) throws AmeacaNotFoundException {
+        Ameaca ameaca = ameacaRepository.findByEspecie(especie)
+                .orElseThrow(() -> new AmeacaNotFoundException(especie));
 
         return ameacaMapper.toDTO(ameaca);
     }

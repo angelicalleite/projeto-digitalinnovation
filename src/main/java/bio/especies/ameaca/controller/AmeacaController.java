@@ -21,7 +21,7 @@ public class AmeacaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO create(@RequestBody @Valid AmeacaDTO ameacaDTO) {
+    public AmeacaDTO create(@RequestBody @Valid AmeacaDTO ameacaDTO) {
         return ameacaService.create(ameacaDTO);
     }
 
